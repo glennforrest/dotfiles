@@ -15,12 +15,27 @@ alias deploy-code='envoy run deploy-code'
 alias mfs='php artisan migrate:fresh --seed'
 alias nah='git reset --hard;git clean -df'
 
-alias pp="php artisan test --parallel"
-alias d="php artisan dusk"
+# Laravel
+alias artisan='php artisan'
+alias tinker='php artisan tinker'
+alias mrs='php artisan migrate:refresh --seed'
+alias migrate='php artisan migrate'
+alias migrate:rollback='php artisan migrate:rollback'
+
 alias sshconfig="vi ~/.ssh/config"
 alias copykey='command cat ~/.ssh/id_rsa.public | pbcopy'
 alias sail='./vendor/bin/sail'
 alias tunnel='valet share -subdomain=freekmurze -region=eu'
+
+# testing
+alias test=vendor/bin/phpunit
+alias pest=vendor/bin/pest
+alias cypress='yarn run cypress open'
+alias phpstan=vendor/bin/phpstan
+alias pp="php artisan test --parallel"
+alias d="php artisan dusk"
+
+alias wordpress="wget http://wordpress.org/latest.tar.gz;tar xfz latest.tar.gz;mv wordpress/* ./;rm -rf wordpress;rm latest.tar.gz"
 
 # JavaScript
 alias jest="./node_modules/.bin/jest"
@@ -30,6 +45,11 @@ alias gc="git checkout"
 alias gpo="git push origin"
 alias gm="git merge"
 alias glog="git log --graph --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)<%an>%Creset' --abbrev-commit"
+alias gl="git log --graph --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)<%an>%Creset' --abbrev-commit"
+alias ifuckedup='git reset --soft HEAD~'
+alias gs="git status"
+alias githide='git update-index --assume-unchanged'
+alias gitshow='git update-index --no-assume-unchanged'
 
 # Fast open
 alias o="open ."
@@ -80,3 +100,16 @@ alias touchbar="killall ControlStrip"
 
 alias php-log="open ~/.config/valet/Log/php-fpm.log"
 alias nginx-log="open ~/.config/valet/Log/nginx-error.log"
+
+# Misc
+alias shrug="echo '¯\_(ツ)_/¯' | pbcopy";
+alias weather="curl http://wttr.in/perth+australia"
+
+# Radio
+alias mpcplay='ssh pi@172.29.53.108 "mpc play"'
+alias mpcstop='ssh pi@172.29.53.108 "mpc stop"'
+
+# lights
+function chur() {
+    curl -X POST http://chur.local/json/state &> /dev/null -H 'Content-Type: application/json' -d '{"on": true,"ps": 1}'
+}
